@@ -13,17 +13,16 @@ class Solution {
 public:
     void dfs(TreeNode *root,vector<int> &nodeVals) {
         if(!root) return;
-        nodeVals.push_back(root->val);
         dfs(root->left,nodeVals);
+        nodeVals.push_back(root->val);
         dfs(root->right,nodeVals);
     }
     int getMinimumDifference(TreeNode* root) {
         vector<int> nodeVals;
         dfs(root,nodeVals);
         int ans=INT_MAX;
-        for(int i=0;i<nodeVals.size();i++) {
-            for(int j=i+1;j<nodeVals.size();j++)
-                ans=min(ans,abs(nodeVals[j]-nodeVals[i]));
+        for(int i=1;i<nodeVals.size();i++) {
+            ans=min(ans,nodeVals[i]-nodeVals[i-1]);
         }
         return ans;
     }
