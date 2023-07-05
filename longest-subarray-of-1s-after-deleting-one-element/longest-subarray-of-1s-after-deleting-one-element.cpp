@@ -11,14 +11,12 @@ public:
             }
         }
         v.push_back({nums[i-1],c});
-        if(v[0].first==0) v.erase(v.begin());
         for(i=0;i<v.size();i++) {
             if(v[i].first==1) {
                 ans=max(ans,v[i].second);
-                if(i+2<v.size()) {
-                    if(v[i+1].second==1)
+                
+                if(i+2<v.size() && v[i+1].second==1)
                     ans=max(ans,v[i].second+v[i+2].second);
-                }
             }
         }
         if(ans == nums.size()) return ans-1;
