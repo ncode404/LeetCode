@@ -5,6 +5,7 @@ public:
             if(temp.size()==k) ans.push_back(temp);
             return;
         }
+        if(temp.size()>k) return;
         temp.push_back(i);
         f(n,k,i+1,ans,temp); //pick
         temp.pop_back();
