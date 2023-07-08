@@ -2,7 +2,7 @@ const string s[] = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
 
 class Solution {
 public:
-    void f(string &digits,vector<string> &ans,int i,string &temp) {
+    void f(string &digits,vector<string> &ans,int i,string temp) {
         if(i==digits.size()) {
             ans.push_back(temp);
             return;
@@ -17,8 +17,7 @@ public:
     vector<string> letterCombinations(string digits) {
         vector<string> ans;
         if(digits.empty()) return ans;
-        string temp;
-        f(digits,ans,0,temp);
+        f(digits,ans,0,"");
         return ans;
     }
 };
