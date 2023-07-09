@@ -1,7 +1,10 @@
 class Solution {
 public:
-    #define all(x) x.begin(),x.end()
     int minMoves(vector<int>& nums) {
-        return accumulate(all(nums),0L)-(*min_element(all(nums))*nums.size());
+        int s=0,m=INT_MAX;
+        for(auto i:nums) {
+            s+=i; m=min(m,i);
+        }
+        return s-m*nums.size();
     }
 };
