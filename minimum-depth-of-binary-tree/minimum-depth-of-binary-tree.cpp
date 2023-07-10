@@ -12,22 +12,10 @@
 class Solution {
 public:
     int minDepth(TreeNode* root) {
-        queue<TreeNode*> q;
-        q.push(root);
         if(!root) return 0;
-        int level=1;
-        while(!q.empty()) {
-            int i,size = q.size();
-            for(i=0;i<size;i++) {
-                auto t = q.front();
-                q.pop();
-                if(!t->left && !t->right)
-                return level;
-                if(t->left) q.push(t->left);
-                if(t->right) q.push(t->right);
-            }
-            level++;
-        }
-        return 0;
+        if(!root->left && !root->right) return 1;
+        if(!root->left && root->right) return 1+minDepth(root->right);
+        if(!root->right && root->left) return 1+minDepth(root->left);
+        return 1+min(minDepth(root->left),minDepth(root->right));
     }
 };
