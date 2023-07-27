@@ -14,11 +14,14 @@ public:
     }
     int deleteAndEarn(vector<int>& nums) {
         unordered_map<int,int> m;
-        for(auto i:nums) 
+        int p=-1,q=INT_MAX;
+        for(auto i:nums) {
             m[i]+=i;
-        int p=*max_element(nums.begin(),nums.end());
+            p=max(p,i);
+            q=min(q,i);
+        }
         vector<int> v;
-        for(int i=1;i<=p;i++) 
+        for(int i=q;i<=p;i++) 
             v.push_back(m[i]);
         return rob(v);
     }
