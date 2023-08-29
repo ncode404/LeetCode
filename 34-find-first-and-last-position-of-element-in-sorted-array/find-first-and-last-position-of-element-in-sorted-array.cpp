@@ -1,20 +1,25 @@
 class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
-        int l=0,r=nums.size()-1,left=-1,right=-1;
-        while(l<=r) {
-            int m=(l+r)/2;
-            if(nums[m]==target) left=m;
-            if(nums[m]>=target) r=m-1;
+        int n=nums.size(), lb=-1, ub=-1, l,h;
+        l=0,h=n-1;
+        while(l<=h) {
+            int m=(h-l)/2+l;
+            if(nums[m]>=target) {
+                if(nums[m]==target) lb=m; 
+                h=m-1;
+            }
             else l=m+1;
         }
-        l=0,r=nums.size()-1;
-        while(l<=r) {
-            int m=(l+r)/2;
-            if(nums[m]==target) right=m;
-            if(nums[m]>target) r=m-1;
-            else l=m+1;
+        l=0,h=n-1;
+        while(l<=h) {
+            int m=(h-l)/2+l;
+            if(nums[m]>target) h=m-1;
+            else {
+                if(nums[m]==target) ub=m; 
+                l=m+1;
+            }
         }
-        return {left,right};
+        return {lb,ub};
     }
 };
