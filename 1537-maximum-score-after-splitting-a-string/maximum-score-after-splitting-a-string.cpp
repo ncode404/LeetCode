@@ -1,17 +1,16 @@
 class Solution {
 public:
     int maxScore(string s) {
-        int leftZ=0, rightO=0, res=0;
-        for(int i=0;i<s.size();i++) {
-            if(i==0) leftZ=(s[i]=='0');
-            else rightO = rightO+(s[i]=='1');
+        int l=(s[0]=='0'), r=0, res=0;
+        for(int i=1;i<s.size();i++) {
+            r+=(s[i]=='1');
         }
-        res=leftZ+rightO;
+        res=l+r;
         for(int i=1;i<s.size()-1;i++) {
-            if(s[i]=='0') leftZ++;
-            else rightO--;
+            if(s[i]=='0') l++;
+            else r--;
 
-            res=max(res,leftZ+rightO);
+            res=max(res,l+r);
         }
         return res;
     }
