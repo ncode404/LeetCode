@@ -25,18 +25,13 @@ public:
             }
             res.push_back(t);
         }
-        for(auto i:res) {
-            for(auto j:i) cout<<j<<" ";
-            cout<<"\n";
-        }
         stack<vector<char>> s;
-        for(int i=0;i<res.size();i++) {
-            s.push(res[i]);
-        }
+        for(auto i:res) s.push(i);
         while(!s.empty()) {
             temp.push_back(s.top());
             s.pop();
         } 
+        
         vector<vector<char>> ans(res[0].size(), vector<char> (res.size(),'\0'));
         for(int i=0;i<res.size();i++) {
             for(int j=0;j<res[0].size();j++) ans[j][i]=temp[i][j];
