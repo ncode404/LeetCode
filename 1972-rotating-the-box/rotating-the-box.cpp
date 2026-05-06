@@ -1,10 +1,10 @@
 class Solution {
 public:
     vector<vector<char>> rotateTheBox(vector<vector<char>>& grid) {
-        vector<vector<char>> res, temp;
+        stack<vector<char>> s;
         for(auto i:grid) {
             int c=0;
-            vector<char> t(i.size());
+            vector<char> t(i.size(),'\0');
             for(int j=0;j<i.size();j++) {
                 if(i[j]=='*') {
                     for(int k=j-1;k>=0;k--) {
@@ -23,18 +23,17 @@ public:
                         t[k]='#'; c--;
                     }
             }
-            res.push_back(t);
+            s.push(t);
         }
-        stack<vector<char>> s;
-        for(auto i:res) s.push(i);
+        vector<vector<char>> temp;
         while(!s.empty()) {
             temp.push_back(s.top());
             s.pop();
-        } 
-        
-        vector<vector<char>> ans(res[0].size(), vector<char> (res.size(),'\0'));
-        for(int i=0;i<res.size();i++) {
-            for(int j=0;j<res[0].size();j++) ans[j][i]=temp[i][j];
+        }
+
+        vector<vector<char>> ans(temp[0].size(), vector<char> (temp.size(),'\0'));
+        for(int i=0;i<temp.size();i++) {
+            for(int j=0;j<temp[0].size();j++) ans[j][i]=temp[i][j];
         }
         return ans;
     }
